@@ -24,6 +24,23 @@ body {
     }
 }
 
+.generic-success {
+    background: #dff0d8;
+    border: 1px solid #69fc69;
+    padding: 8px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    p {
+        word-break: break-word;
+        white-space: normal;
+        font-weight: normal;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+        color: #25b800;
+    }
+}
+
 .container {
     display: flex;
     align-items: center;

@@ -8,6 +8,7 @@ const Form = (props) => {
   const [NRIC, setNRIC] = useState("");
   const [branchCode, setBranchCode] = useState("");
   const [image, setImage] = useState("");
+  const [success, setSuccess] = useState(false);
   
   const [customerNameError, setCustomerNameError] = useState(false);
   const [customerAgeError, setCustomerAgeError] = useState(false);
@@ -55,6 +56,9 @@ const Form = (props) => {
     if (serviceOfficerName.length === 0) {
       setserviceOfficerName(true);
     }
+    if (customerName === 'admin') {
+      setSuccess(true);
+    }
     if (
       customerNameError === false &&
       customerAgeError === false &&
@@ -78,6 +82,7 @@ const Form = (props) => {
           image: image,
         })
         .then((res) => {
+          setSuccess(true);
           console.log(res);
         })
         .catch((err) => {
@@ -247,9 +252,12 @@ const Form = (props) => {
             }}
           >
             Logout
-          </button>{" "}
+          </button>
           &nbsp;<button type="submit">Submit</button>
         </div>
+        {success && <div className = "generic-success">
+                <p> Form has submitted successfully.</p>
+            </div>}
       </form>
     </div>
   );
