@@ -77,12 +77,13 @@ Errors
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #909090;
+    height: 1000px;
     form {
-        height: 120%;
-        width: 35%;
+        height: 800px;
+        width: 30%;
         padding: 50px 20px;
         background: rgb(248, 245, 245);
+        color: #909090;
     }
     h1 {
         text-align: center;
@@ -131,4 +132,16 @@ button {
 button:hover {
     cursor: pointer;
     box-shadow: 1px 1px 10px #696969;
+}
+
+@media only screen and (max-width: 800px) {
+    .container {
+        form {
+            height: 800px;
+            width: 80%;
+            padding: 50px 20px;
+            background: rgb(248, 245, 245);
+            color: #909090;
+        }
+    }
 }

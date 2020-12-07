@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 
-const Form = () => {
+const Form = (props) => {
     const [customerName, setCustomerName] = useState("");
     const [customerAge, setCustomerAge] = useState(0);
     const [serviceOfficerName, setserviceOfficerName] = useState("");
@@ -223,7 +223,11 @@ should not exceed 2 megabytes.
                   <option value = "555">Credit Cards</option>
                 </select>
             </div>
-            <button type = "submit">Submit</button>
+            <div style={{display: "flex", justifyContent: "space"}}>
+            <button onClick= {()=>{
+              props.setIsAuthenticated(false);
+            }}>Logout</button> &nbsp;<button type = "submit">Submit</button>
+            </div>
          </form>
        </div>
       

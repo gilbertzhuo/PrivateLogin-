@@ -1,33 +1,23 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const Login = () => {
+const Login = (props) => {
     const [user, setUsername] = useState("");
     const [pass, setPassword] = useState("");
     const [loginError, setLoginError] = useState(false);
     const submit = (e) => {
         e.preventDefault();
         if (user == 'admin') {
-            localStorage.setItem('auth', true);
-            window.location.reload();
+            props.setIsAuthenticated(true);
         }
-        else {
-            axios
-            .post('http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/login', {
-                username: user,
-                password: pass,
-            })
-            .then( (res)=> {
-                localStorage.setItem('token', res);
-                localStorage.setItem('auth', true);
-                window.location.reload();
-                return false;
-            })
-            .catch((error)=> {
-                setLoginError(true);
-                console.log(error);
-            });
-        }
+        axios.post('http://localhost:8000/api-token-auth/', {
+            username: user,
+            password: pass
+        }).then( (res)=> {
+            props.setIsAuthenticated(true);
+        }).catch((error)=> {
+            setLoginError(true);
+        });
 
     }
     return (
@@ -42,7 +32,6 @@ const Login = () => {
                 placeholder = "Enter your username here"
                 onChange = {(e)=>{
                     setUsername(e.target.value)
-                    console.log(user)
                 }}/>
             </div>
             <div>
@@ -54,11 +43,10 @@ const Login = () => {
                 placeholder = "Enter your password here"
                 onChange = {(e)=>{
                     setPassword(e.target.value)
-                    console.log(pass)
                 }}
                 />
             </div>
-            {loginError && <div id = "errorMessage" class = "generic-error">
+            {loginError && <div id = "errorMessage" className = "generic-error">
                 <p> The credentials you have entered is not valid.</p>
             </div>}
             <button type="submit">SUBMIT</button>

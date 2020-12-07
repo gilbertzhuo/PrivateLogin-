@@ -1,16 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import Login from './components/login';
 import Form from './components/form';
 import "./App.scss";
 
 function App() {
-  let auth = localStorage.getItem('auth');
-  useEffect(() => {
-    auth = localStorage.getItem('auth');
-});
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <>
-      {auth === "true" ? (<Form/>):(<Login/>) }
+      {isAuthenticated ? (<Form setIsAuthenticated={setIsAuthenticated}/>):(<Login setIsAuthenticated={setIsAuthenticated}/>) }
     </>
   );
 }
