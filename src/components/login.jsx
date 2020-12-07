@@ -21,7 +21,7 @@ const Login = (props) => {
 
     }
     return (
-        <div className="login-container">
+        <div className="container">
         <form onSubmit={submit}>
             <div>
                 <label htmlFor="username">Username:</label>
