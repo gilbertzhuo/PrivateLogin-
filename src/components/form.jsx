@@ -8,7 +8,7 @@ const Form = (props) => {
   const [NRIC, setNRIC] = useState("");
   const [branchCode, setBranchCode] = useState("");
   const [image, setImage] = useState("");
-
+  
   const [customerNameError, setCustomerNameError] = useState(false);
   const [customerAgeError, setCustomerAgeError] = useState(false);
   const [serviceOfficerNameError, setserviceOfficerNameError] = useState(false);

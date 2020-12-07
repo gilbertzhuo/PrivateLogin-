@@ -7,7 +7,7 @@ const Login = (props) => {
     const [loginError, setLoginError] = useState(false);
     const submit = (e) => {
         e.preventDefault();
-        if (user == 'admin') {
+        if (user === 'admin') {
             props.setIsAuthenticated(true);
         }
         axios.post('http://localhost:8000/api-token-auth/', {

@@ -26,16 +26,6 @@ body {
     div {
         margin-bottom: 40px;
     }
-    input[type="text"],
-    input[type="password"] {
-        width: 100%;
-        border: none;
-        outline: none;
-        border-bottom: 1px solid #dadee6;
-        background: transparent;
-        color: black;
-        height: 40px;
-    }
     a {
         display: block;
         text-align: right;
@@ -76,9 +66,12 @@ Errors
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 100%;
     form {
         width: 30%;
+        height: 80%;
         padding: 50px 20px;
         background: rgb(248, 245, 245);
         color: #909090;
@@ -92,28 +85,6 @@ Errors
     }
     div {
         margin-bottom: 40px;
-    }
-    input[type="text"] {
-        width: 100%;
-        border: none;
-        outline: none;
-        border-bottom: 1px solid #dadee6;
-        background: transparent;
-        color: black;
-        height: 40px;
-    }
-    input[type="number"],
-    select {
-        width: 100%;
-        border: none;
-        outline: none;
-        border-bottom: 1px solid #dadee6;
-        background: transparent;
-        color: black;
-        height: 40px;
-    }
-    input[type="file"] {
-        padding-top: 20px;
     }
 }
 
@@ -132,10 +103,36 @@ button:hover {
     box-shadow: 1px 1px 10px #696969;
 }
 
+input[type="text"] {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #dadee6;
+    background: transparent;
+    color: black;
+    height: 40px;
+}
+
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #dadee6;
+    background: transparent;
+    color: black;
+    height: 40px;
+}
+
+input[type="file"] {
+    padding-top: 20px;
+}
+
 @media only screen and (max-width: 800px) {
     .container {
         form {
-            height: 800px;
+            height: 80%;
             width: 80%;
             padding: 50px 20px;
             background: rgb(248, 245, 245);
