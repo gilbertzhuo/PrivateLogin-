@@ -37,13 +37,58 @@ const Form = () => {
       }
     }
     
+
+    const submit = (e) => {
+      e.preventDefault();
+      let today = new Date();
+      let time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+   
+      let dd = String(today.getDate()).padStart(2, "0");
+      let mm = String(today.getMonth() + 1).padStart(2, "0");
+      let yyyy = today.getFullYear();
+   
+      today = dd + "/" + mm + "/" + yyyy + " " + time;
+   
+      if (customerName.length === 0) {
+        setCustomerName(true);
+      }
+      if (serviceOfficerName.length === 0) {
+        setserviceOfficerName(true);
+      }
+      if (customerNameError === false && customerAgeError === false && serviceOfficerNameError === false &&
+        NRICError === false && branchCodeError === false && imageError === false) {
+        let token =  JSON.parse(localStorage.getItem('token'));
+        axios
+        .post("", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+          customerName: customerName,
+          customerAge: customerAge,
+          serviceOfficerName: serviceOfficerName,
+          NRIC: NRIC,
+          branchCode: branchCode,
+          image: image,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+    }
+    }
+
     return (
-       <div class="container">
-         <form>
+       <div className="container">
+         <form onSubmit = {submit}>
             <div>
                 <label htmlFor="customerName">Customer Name:</label>
                 <input type="text"
-                autocomplete="off"
+                autoComplete="off"
                 id = "customerName"
                 name = "customerName"
                 onChange = {(e)=>{
@@ -65,7 +110,7 @@ const Form = () => {
             <div>
                 <label htmlFor="customerAge">Customer Age:</label>
                 <input type="number"
-                autocomplete="off"
+                autoComplete="off"
                 id = "customerAge"
                 name = "customerAge"
                 onChange = {(e)=>{
@@ -88,7 +133,7 @@ const Form = () => {
             <div>
                 <label htmlFor="serviceOfficerName">Service Officer Name:</label>
                 <input type="text"
-                autocomplete="off"
+                autoComplete="off"
                 id = "serviceOfficerName"
                 name = "serviceOfficerName"
                 onChange = {(e)=>{
@@ -110,7 +155,7 @@ const Form = () => {
             <div>
                 <label htmlFor="NRIC">NRIC:</label>
                 <input type="text"
-                autocomplete="off"
+                autoComplete="off"
                 id = "NRIC"
                 name = "NRIC"
                 onChange = {(e)=>{
@@ -133,7 +178,7 @@ numbers.
             <div>
                 <label htmlFor="branchCode">Branch Code:</label>
                 <input type="number"
-                autocomplete="off"
+                autoComplete="off"
                 id = "branchCode"
                 name = "branchCode"
                 onChange = {(e)=>{
@@ -155,8 +200,7 @@ numbers.
             <div>
                 <label htmlFor="image">Image Upload:</label>
                 <input type="file"
-                accept=".jpeg,.png"
-                autocomplete="off"
+                autoComplete="off"
                 id = "image"
                 name = "image"
                 onChange={handleImageUpload}/>
@@ -179,7 +223,7 @@ should not exceed 2 megabytes.
                   <option value = "555">Credit Cards</option>
                 </select>
             </div>
-            <button>Submit</button>
+            <button type = "submit">Submit</button>
          </form>
        </div>
       

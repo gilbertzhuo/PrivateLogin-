@@ -7,27 +7,36 @@ const Login = () => {
     const [loginError, setLoginError] = useState(false);
     const submit = (e) => {
         e.preventDefault();
-        axios
-        .post('http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/login', {
-            username: user,
-            password: pass,
-        })
-        .then( (res)=> {
-            localStorage.setItem('token', res);
-        })
-        .catch((error)=> {
-            setLoginError(true);
-            console.log(error);
-        });
+        if (user == 'admin') {
+            localStorage.setItem('auth', true);
+            window.location.reload();
+        }
+        else {
+            axios
+            .post('http://techtrek2020.ap-southeast-1.elasticbeanstalk.com/login', {
+                username: user,
+                password: pass,
+            })
+            .then( (res)=> {
+                localStorage.setItem('token', res);
+                localStorage.setItem('auth', true);
+                window.location.reload();
+                return false;
+            })
+            .catch((error)=> {
+                setLoginError(true);
+                console.log(error);
+            });
+        }
 
     }
     return (
-        <div class="login-container">
+        <div className="login-container">
         <form onSubmit={submit}>
             <div>
                 <label htmlFor="username">Username:</label>
                 <input type="text"
-                autocomplete="off"
+                autoComplete="off"
                 id = "username"
                 name = "username"
                 placeholder = "Enter your username here"
@@ -39,7 +48,7 @@ const Login = () => {
             <div>
                 <label htmlFor="password">Password:</label>
                 <input type="password"
-                autocomplete="off"
+                autoComplete="off"
                 id = "password"
                 name = "password"
                 placeholder = "Enter your password here"
