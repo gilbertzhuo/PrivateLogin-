@@ -8,7 +8,6 @@ body {
 
 .login-container {
     width: 370px;
-    height: 400px;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -77,9 +76,8 @@ Errors
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 1000px;
+    height: 100vh;
     form {
-        height: 800px;
         width: 30%;
         padding: 50px 20px;
         background: rgb(248, 245, 245);
